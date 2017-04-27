@@ -1,0 +1,587 @@
+@import url("whitespace-reset.css");
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+  overflow-x: hidden;
+  font: normal 16px Helvetica, Arial, sans-serif;
+  letter-spacing: .05em;
+  line-height: 100%;
+  background-color: #464f77;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+/* COLUMN FORMATTING */
+
+#columns {
+  margin: 0 0 0 335px;
+  background-color: #fff;
+}
+
+#col1,
+#col1:before {
+  width: 335px;
+  min-height: 100vh;
+}
+
+#col2,
+#col2:before {
+  width: 100%;
+  min-height: 100vh;
+}
+
+#col1:before,
+#col2:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+#col1:before {
+  left: 0;
+  background: #464f77;
+}
+
+#col2:before {
+  left: 335px;
+  background: #fff;
+}
+
+#col1 {
+  display: inline-block;
+  margin: 0 0 0 -335px;
+  padding: 62px 0 70px 0;
+  color: #b2b5c3;
+  background: #464f77;
+}
+
+
+#col2 {
+  display: inline-block;
+  padding: 77px 100px 70px 20px;
+  vertical-align: top;
+  color: #060606;
+  background: #fff;
+}
+
+#col1:after,
+#col2:after {
+    display: block;
+    position: absolute;
+    height: 100%;
+    content: "";
+}
+
+/* HEADERS */
+
+#col1,
+#col1 h2,
+#col2 h2,
+#col2 h3,
+#head div span {
+  font-weight: 100;
+}
+
+#col1 h2,
+#all_todos_header h2 {
+  font-size: 18px;
+  color: #fff;
+}
+
+#head {
+  padding-bottom: 56px;
+}
+
+#head h2 {
+  float: left;
+}
+
+#col2 h2,
+#head h2 {
+  padding: 0 19px 0 12px;
+  font-size: 21px;
+  color: #050505;
+}
+
+h3 {
+  display: inline-block;
+  padding: 4px 0 13px 12px;
+  color: #148fd5;
+}
+
+h3 img {
+  padding-right: 14px;
+}
+
+h3 #add_todo:hover {
+  color: #464f77;
+  cursor: pointer;
+}
+
+/* LIST STYLES */
+
+#col1 dl {
+  padding: 0;
+}
+
+#all_todos {
+  margin-bottom: 25px;
+}
+
+#all_todos_header h2,
+#completed h2 {
+  display: inline-block;
+}
+
+#all_todos_header h2::before,
+#completed h2::before {
+  float: left;
+  margin: -7px 0 0 -35px;
+  width: 26px;
+  height: 26px;
+  content: "";
+  vertical-align: middle;
+}
+
+#all_todos_header h2::before {
+  margin-right: 25px;
+  background: transparent url("../images/all_todos.png") 0 0 no-repeat;
+}
+
+#completed h2::before {
+  background: transparent url("../images/completed.png") 0 0 no-repeat;
+}
+
+#col1 #all_todos_header {
+  padding: 15px 0 12px 0;
+  margin-bottom: 2px;
+}
+
+#all_todos li {
+  padding: 11px 0 11px 0;
+}
+
+#completed {
+  padding-top: 11px;
+}
+
+#col1 #completed_sidebar_header {
+  padding: 15px 0 0 0;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+#completed h2 {
+  padding-bottom: 13px;
+}
+
+#completed li {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+#completed ul dt.all_complete {
+  text-decoration: line-through;
+}
+
+#col1 dt,
+#col1 dd {
+  display: inline-block;
+  text-align: right;
+}
+
+#col1 dt {
+  width: 55%;
+}
+
+#col1 dd {
+  width: 43%;
+  padding-right: 35px;
+}
+
+#col1 ul dt:hover {
+  color: #fff;
+}
+
+.current_page {
+  color: #fff;
+  background: #383f5f;
+}
+
+#col1 .current_page .number_circle {
+  background: #148fd5;
+  color: #fff;
+}
+
+#col2 li {
+  padding: 17px 0 11px 12px;
+  border-top: 1px solid #e7e7e7;
+}
+
+#col2 label span:hover {
+  cursor: pointer;
+  color: #148fd5;
+}
+
+#col2 dl::before,
+#col2 dl::after,
+#col2 h2::before,
+#col2 h2::after {
+  display: block;
+  content: "";
+}
+
+#col2 dl::after,
+#col2 h2::after {
+  clear: both;
+}
+
+#col2 dt {
+  float: left;
+}
+
+#col2 dd {
+  float: right;
+}
+
+.number_circle,
+#head div {
+  display: inline-block;
+  height: 18px;
+  color: #dadbe2;
+  font-size: 14px;
+}
+
+.number_circle,
+#all_todos_header div {
+  background: #6b7292;
+}
+
+.number_circle,
+#head div {
+  min-width: 18px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 0 2px;
+}
+
+.number_circle {
+  vertical-align: bottom;
+  padding: 1px;
+}
+
+#head div {
+  float: left;
+  background: #148fd5;
+  color: #fff;
+}
+
+#head span {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* CHECKED ITEMS */
+
+.trashcan {
+  width: 16px;
+  height: 17px;
+  background: transparent url("../images/trash.png") 0 0 no-repeat;
+}
+
+.trashcan:hover {
+  background: transparent url("../images/trash_red.png") 0 0 no-repeat;
+}
+
+.todo_checkbox {
+  float: left;
+  margin-right: 12px;
+  width: 14px;
+  height: 14px;
+  content: "";
+  background: transparent url("../images/checkbox1.png") 0 0 no-repeat;
+}
+
+.todo_checkbox.completed {
+  background: transparent url("../images/checkbox2.png") 0 0 no-repeat;
+}
+
+.todo_checkbox:hover {
+  cursor: pointer;
+}
+
+input.todo:checked + span {
+  text-decoration: line-through;
+  color: #b3b3b3;
+}
+
+#hamburger_menu {
+  display: none;
+}
+
+/* MODAL */
+
+#modal {
+  display: none;
+}
+
+#modal form {
+  position: fixed;
+  top: 107px;
+  left: 50%;
+  z-index: 2;
+  width: 575px;
+  height: auto;
+  padding: 37px 39px 39px 31px;
+  background: #fff;
+  margin: 0 0 0 -285px;
+}
+
+.modal_layer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+  background: rgba(0, 0, 0, .4)
+}
+
+#modal label {
+  height: 34px;
+  line-height: 34px;
+  color: #292929;
+}
+
+#modal dl {
+  padding-bottom: 24px;
+}
+
+#modal dt {
+  width: 19%;
+}
+
+#modal dt,
+#modal dd {
+  display: inline-block;
+}
+
+#modal_description dt {
+  vertical-align: top;
+}
+
+#modal input[type="text"],
+#modal textarea {
+  width: 396px;
+  border: 1px solid #b3b3b3;
+  padding: 7px 9px;
+  font-size: 16px;
+}
+
+#modal input[type="text"] {
+  height: 36px;
+}
+
+#modal input[type="submit"],
+#modal label[for="is_complete"] {
+  float: right;
+  width: 184px;
+  height: 36px;
+  margin: 0 9px;
+  background: #148fd5;
+  font-size: 16px;
+  font-weight: lighter;;
+  letter-spacing: .05em;
+  color: #fff;
+  border-style: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#modal input[type="submit"]:hover,
+#modal label[for="is_complete"]:hover {
+  background-color: #464f77;
+  cursor: pointer;
+}
+
+#modal #is_complete:checked + label {
+  background-color: #fff;
+  border: 2px solid #148fd5;
+  color: #148fd5;
+  font-weight: bold;
+}
+
+#modal ul {
+  width: 396px;
+}
+
+#modal li {
+  display: inline-block;
+}
+
+#modal select {
+  display: inline-block;
+  width: 116px;
+  height: 36px;
+  padding: 0 8px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  background: url("../images/arrow.png") 93% 10px no-repeat;
+  font-size: 16px;
+  border: 1px solid #cecece;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+#modal span {
+  display: inline-block;
+  width: 24px;
+}
+
+input#edit:checked + #modal {
+  display: block;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+
+@media (max-width: 768px){
+  #columns {
+    margin: 0;
+  }
+
+  #col1, #col1:before {
+    width: 250px;
+  }
+
+  #col1 dt,
+  #col1 dd {
+    text-align: center;
+    width: 48%;
+  }
+
+  #col1 {
+    margin: 0 0 0 -250px;
+  }
+
+  #all_todos_header h2::before {
+    background: none;
+  }
+
+  #completed h2::before {
+    background: none;
+  }
+
+  #col2:before {
+    left: 250px;
+  }
+
+  #col2 {
+    position: relative;
+    padding-right: 70px;
+  }
+
+  #hamburger_menu {
+    display: block;
+    position: absolute;
+    top: 23px;
+    left: 32px;
+  }
+
+  input[name="hamburger"]:checked + #columns {
+    margin-left: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  #col1, #col1:before {
+    width: 200px;
+  }
+
+  #col1 dt {
+    text-align: center;
+    width: 57%;
+  }
+
+  #col1 dd {
+    width: 40%;
+    text-align: right;
+  }
+
+  #col1 dd {
+    padding-right: 20px;
+  }
+
+  #col1 {
+    margin: 0 0 0 -200px;
+  }
+
+  #col2:before {
+    left: 200px;
+  }
+
+  #col2 {
+    padding-right: 10px;
+  }
+
+  input[name="hamburger"]:checked + #columns {
+    margin-left: 200px;
+  }
+
+  #modal form {
+    top: 50px;
+    left: 50%;
+    margin-left: -200px;
+    width: 400px;
+    margin-top: 0;
+  }
+
+  #modal input[type="text"],
+  #modal textarea {
+    width: 350px;
+  }
+
+  #modal li {
+    display: inline-block;
+    width: 30%;
+  }
+
+  #modal select {
+    width: 79%;
+  }
+
+  #modal dt,
+  #modal dd {
+    display: block;
+  }
+
+  #modal input[type="submit"],
+  #modal label[for="is_complete"] {
+    width: 100px;
+  }
+
+  #modal label[for="is_complete"] {
+    padding-top: 3px;
+    font-size: 12px;
+    line-height: normal;
+    vertical-align: middle;
+  }
+  
+}

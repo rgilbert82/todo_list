@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Todo List</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="stylesheets/main.css" />
+    <script src="javascripts/jquery-3.1.1.js"></script>
+    <script src="javascripts/handlebars-v4.0.5.js"></script>
+  </head>
+
+  <body>
+    <input type="checkbox" name="hamburger" id="hamburger" hidden/>
+    <div id="columns">
+      <div id="col1">
+
+        <div id="all_todos">
+          <dl id="all_todos_header" data-highlight="all_todos" >
+            <dt><h2><a href="#">All Todos</a></h2></dt>
+            <dd class="sidebar_header_total"></dd>
+          </dl>
+          <ul>
+          </ul>
+        </div>
+
+        <div id="completed">
+          <dl id="completed_sidebar_header" data-highlight="completed" >
+            <dt><h2><a href="#">Completed</a></h2></dt>
+            <dd class="sidebar_header_total"></dd>
+          </dl>
+          <ul>
+          </ul>
+        </div>
+      </div><!--
+
+      --><div id="col2">
+      <label for="hamburger">
+        <img src="images/menu.png" alt="Hamburger" id="hamburger_menu"/>
+      </label>
+        <div id="head">
+        </div>
+        <h3><a href="#" id="add_todo"><img src="images/add.png" alt="add" />Add new todo</a></h3>
+        <ul>
+        </ul>
+      </div>
+
+      <div id="modal_container">
+      </div>
+    </div>
+
+    <!--  TEMPLATES  -->
+
+    <script id="sidebar_header_template" type="text/x-handlebars">
+      <div class="number_circle">{{total}}</div>
+    </script>
+
+    <script id="primary_column_header_template" type="text/x-handlebars">
+      <h2>{{date}}</h2>
+      <div><span>{{total}}</span></div>
+    </script>
+
+    <script id="all_todos_sidebar_partial" type="text/x-handlebars">
+      <li data-highlight="all_todos_{{date}}">
+        <dl>
+          <dt><a href="#">{{date}}</a></dt>
+          <dd><div class="number_circle">{{totalNumber}}</div></dd>
+        </dl>
+      </li>
+    </script>
+
+    <script id="all_todos_sidebar_template" type="text/x-handlebars">
+      {{#each month}}
+      {{> all_todos_sidebar_partial}}
+      {{/each}}
+    </script>
+
+    <script id="completed_sidebar_partial" type="text/x-handlebars">
+      <li data-highlight="completed_{{date}}">
+        <dl>
+          {{#if allCompleted}}
+            <dt class="all_complete">
+          {{^}}
+            <dt>
+          {{/if}}
+            <a href="#">{{date}}</a>
+          </dt>
+          <dd><div class="number_circle">{{completedNumber}}</div></dd>
+        </dl>
+      </li>
+    </script>
+
+    <script id="completed_sidebar_template" type="text/x-handlebars">
+      {{#each month}}
+      {{> completed_sidebar_partial}}
+      {{/each}}
+    </script>
+
+    <script id="primary_column_todo_partial" type="text/x-handlebars">
+      <li data-id="{{id}}">
+        <dl>
+          <dt>
+            <div class="todo_checkbox {{#if is_complete}} completed {{/if}}"></div>
+            <label><input type="checkbox" class="todo" {{#if is_complete}} checked {{/if}} hidden/>
+              <span>{{title}} - {{date_or_no_date day month year}}</span>
+            </label>
+          </dt>
+          <dd><a href="#"><div class="trashcan"></div></a></dd>
+        </dl>
+      </li>
+    </script>
+
+    <script id="primary_column_todo_template" type="text/x-handlebars">
+      {{#each todo}}
+      {{> primary_column_todo_partial}}
+      {{/each}}
+    </script>
+
+    <script id="modal_template" type="text/x-handlebars">
+      <div id="modal">
+        <form action="#" method="post">
+          <input type="hidden" name="id" value="{{id}}" />
+            <dl>
+              <dt>
+                <label for="title">Title</label>
+              </dt>
+              <dd>
+                <input type="text" name="title" value="{{title}}" placeholder="todo name" required/>
+              </dd>
+            </dl>
+            <dl>
+              <dt>
+                <label for="due_date">Due&nbsp;Date</label>
+              </dt>
+              <dd>
+                <ul>
+                  <li>
+                    <select name="day" id="day" value="{{day}}" >
+                      <option value="" selected>Day</option>
+                      <option {{select_day day "01"}} value="01">01</option>
+                      <option {{select_day day "02"}} value="02">02</option>
+                      <option {{select_day day "03"}} value="03">03</option>
+                      <option {{select_day day "04"}} value="04">04</option>
+                      <option {{select_day day "05"}} value="05">05</option>
+                      <option {{select_day day "06"}} value="06">06</option>
+                      <option {{select_day day "07"}} value="07">07</option>
+                      <option {{select_day day "08"}} value="08">08</option>
+                      <option {{select_day day "09"}} value="09">09</option>
+                      <option {{select_day day "10"}} value="10">10</option>
+                      <option {{select_day day "11"}} value="11">11</option>
+                      <option {{select_day day "12"}} value="12">12</option>
+                      <option {{select_day day "13"}} value="13">13</option>
+                      <option {{select_day day "14"}} value="14">14</option>
+                      <option {{select_day day "15"}} value="15">15</option>
+                      <option {{select_day day "16"}} value="16">16</option>
+                      <option {{select_day day "17"}} value="17">17</option>
+                      <option {{select_day day "18"}} value="18">18</option>
+                      <option {{select_day day "19"}} value="19">19</option>
+                      <option {{select_day day "20"}} value="20">20</option>
+                      <option {{select_day day "21"}} value="21">21</option>
+                      <option {{select_day day "22"}} value="22">22</option>
+                      <option {{select_day day "23"}} value="23">23</option>
+                      <option {{select_day day "24"}} value="24">24</option>
+                      <option {{select_day day "25"}} value="25">25</option>
+                      <option {{select_day day "26"}} value="26">26</option>
+                      <option {{select_day day "27"}} value="27">27</option>
+                      <option {{select_day day "28"}} value="28">28</option>
+                      <option {{select_day day "29"}} value="29">29</option>
+                      <option {{select_day day "30"}} value="30">30</option>
+                      <option {{select_day day "31"}} value="31">31</option>
+                    </select><!--
+                    --><span>&nbsp;&nbsp;/ </span>
+                  </li><!--
+                  --><li>
+                    <select name="month" id="month" value="{{month}}"  >
+                      <option value="" selected>Month</option>
+                      <option {{select_month month "01"}} value="01">January</option>
+                      <option {{select_month month "02"}} value="02">February</option>
+                      <option {{select_month month "03"}} value="03">March</option>
+                      <option {{select_month month "04"}} value="04">April</option>
+                      <option {{select_month month "05"}} value="05">May</option>
+                      <option {{select_month month "06"}} value="06">June</option>
+                      <option {{select_month month "07"}} value="07">July</option>
+                      <option {{select_month month "08"}} value="08">August</option>
+                      <option {{select_month month "09"}} value="09">September</option>
+                      <option {{select_month month "10"}} value="10">October</option>
+                      <option {{select_month month "11"}} value="11">November</option>
+                      <option {{select_month month "12"}} value="12">December</option>
+                    </select><!--
+                    --><span>&nbsp;&nbsp;/ </span>
+                  </li><!--
+                  --><li>
+                    <select name="year" id="year" value="{{year}}"  >
+                      <option value="" selected>Year</option>
+                      <option {{select_year year "2017" }}>2017</option>
+                      <option {{select_year year "2018" }}>2018</option>
+                      <option {{select_year year "2019" }}>2019</option>
+                      <option {{select_year year "2020" }}>2020</option>
+                    </select>
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+            <dl id="modal_description">
+              <dt>
+                <label for="description" >Description</label>
+              </dt>
+              <dd>
+                <textarea name="description" id="description" placeholder="Description" rows="7">{{description}}</textarea>
+              </dd>
+            </dl>
+            {{#if is_complete}}
+              <input type="checkbox" name="is_complete" id="is_complete" checked hidden />
+              <label for="is_complete">Mark As Incomplete</label>
+            {{^}}
+              <input type="checkbox" name="is_complete" id="is_complete" hidden/>
+              <label for="is_complete">Mark As Complete</label>
+            {{/if}}
+            <input type="submit" value="Save" />
+        </form>
+        <div class="modal_layer">
+        </div>
+      </div>
+    </script>
+
+    <script src="javascripts/todos.js"></script>
+  </body>
+</html>
